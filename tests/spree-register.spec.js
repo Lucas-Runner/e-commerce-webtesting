@@ -3,20 +3,21 @@ const { test, expect } = require('@playwright/test');
 
 test('Browser Context Test', async ({ browser }) => {
 
+    // Random character generator and e-mail creator with PutsBox
     const randomString = Math.random().toString(36).substring(2, 10);
     const baseUrl = "https://putsbox.com/random/inspect";
     const newUrl = baseUrl.replace("random", randomString);
     const email = `${randomString}@putsbox.com`
 
+    // E-mail page execution
     const context = await browser.newContext();
     const page = await context.newPage();
 
     await page.goto(newUrl);
-    const randomEmail = await page.getAttribute('#putsbox-token-input', 'value');
-    console.log(randomEmail);
+    console.log(email);
 
+    // New tab for website navigation
     const newContext = await browser.newContext();
-    const newPage = await context.newPage();
     const newTab = await context.newPage();
 
     await newTab.goto("https://demo.spreecommerce.org/");
