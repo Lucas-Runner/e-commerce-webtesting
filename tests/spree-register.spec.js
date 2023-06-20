@@ -37,13 +37,11 @@ test('Browser Context Test', async ({ browser }) => {
 
     console.log(newUrl);
 
-    /*
-
     const context = await browser.newContext();
     const page = await context.newPage();
 
-    await page.goto("https://demo.spreecommerce.org/");
-    */
+    await page.goto(newUrl);
+    
 
 
 });
