@@ -34,7 +34,7 @@ test('Browser Context Test', async ({ browser }) => {
     const randomString = Math.random().toString(36).substring(2, 10);
     const baseUrl = "https://putsbox.com/random/inspect";
     const newUrl = baseUrl.replace("random", randomString);
-    console.log(newUrl);
+    const email = `${randomString}@putsbox.com`
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -50,7 +50,7 @@ test('Browser Context Test', async ({ browser }) => {
     await newTab.goto("https://demo.spreecommerce.org/");
     await newTab.locator("#account-button").click();
     await newTab.locator('#link-to-account a[href="/signup"]').click();
-    await newTab.locator("[id$='spree_user_email']").type(randomEmail);
+    await newTab.locator("[id$='spree_user_email']").type(email);
 
 
     await page.waitForTimeout(5000);
