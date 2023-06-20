@@ -48,9 +48,8 @@ test('Browser Context Test', async ({ browser }) => {
 
     await newTab.goto("https://demo.spreecommerce.org/");
 
-    await page.waitForLoadState('networkidle');
-
-    await (page.locator('id=["account-button"]')).click();
-
+    //await (page.locator('.navbar-right-dropdown-toggle.account-icon')).click();
+    await page.locator("[id='account-button']").click();
+    //const email =  page.locator("[id='email']");
 
 });
