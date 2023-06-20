@@ -40,8 +40,8 @@ test('Browser Context Test', async ({ browser }) => {
     const page = await context.newPage();
 
     await page.goto(newUrl);
-    const value = await page.getAttribute('#putsbox-token-input', 'value');
-    console.log(value);
+    const randomEmail = await page.getAttribute('#putsbox-token-input', 'value');
+    console.log(randomEmail);
 
     const newContext = await browser.newContext();
     const newPage = await context.newPage();
@@ -50,7 +50,8 @@ test('Browser Context Test', async ({ browser }) => {
     await newTab.goto("https://demo.spreecommerce.org/");
     await newTab.locator("#account-button").click();
     await newTab.locator('#link-to-account a[href="/signup"]').click();
-    await newTab.locator("[id$='spree_user_email']").type(newUrl);
+    await newTab.locator("[id$='spree_user_email']").type(randomEmail);
+
 
     await page.waitForTimeout(5000);
 
