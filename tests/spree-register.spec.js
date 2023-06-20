@@ -41,7 +41,14 @@ test('Browser Context Test', async ({ browser }) => {
     const page = await context.newPage();
 
     await page.goto(newUrl);
-    
+
+    const newContext = await browser.newContext();
+    const newPage = await context.newPage();
+    const newTab = await context.newPage();
+
+    await newTab.goto("https://demo.spreecommerce.org/");
+
+    await (page.locator('.spree-icon.d-inline-block')).click();
 
 
 });
