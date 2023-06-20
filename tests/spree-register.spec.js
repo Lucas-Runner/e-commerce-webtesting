@@ -52,7 +52,11 @@ test('Browser Context Test', async ({ browser }) => {
     await newTab.locator('#link-to-account a[href="/signup"]').click();
     await newTab.locator("[id$='spree_user_email']").type(email);
 
+    const numPassword = "123456789"
 
+    await newTab.locator("[id$='spree_user_password']").type(numPassword);
+    await newTab.locator("[id$='spree_user_password_confirmation']").type(numPassword);
+    
     await page.waitForTimeout(5000);
 
 
