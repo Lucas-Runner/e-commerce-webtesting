@@ -1,0 +1,13 @@
+{
+  "name": "e-commerce-webtesting",
+  "version": "1.0.0",
+  "description": "Basic e-commerce webtesting UI template for fast webtesting",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.35.1"
+  }
+}
