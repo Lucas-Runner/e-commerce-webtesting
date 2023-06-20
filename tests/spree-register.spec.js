@@ -29,10 +29,11 @@ test('Browser Context Test', async ({ browser }) => {
     await newTab.locator("[id$='spree_user_password']").type(numPassword);
     await newTab.locator("[id$='spree_user_password_confirmation']").type(numPassword);
     await newTab.locator(".btn.btn-primary.btn-block.spree-btn.mb-5").click();
-    
+
+    const searchText = 'My Account';
+    expect (await newTab.locator(".text-uppercase.spree-mb-large.spree-mt-large.spree-header").textContent()).toContain(searchText);
 
 
-    
     await page.waitForTimeout(5000);
 
 
