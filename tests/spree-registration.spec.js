@@ -16,7 +16,7 @@ test('Browser Context Test', async ({ browser }) => {
     await page.goto(newUrl);
     console.log(email);
 
-    // New tab for website navigation
+    // New tab for website navigation / Website Registration
     const newContext = await browser.newContext();
     const newTab = await context.newPage();
 
@@ -35,7 +35,7 @@ test('Browser Context Test', async ({ browser }) => {
     const searchPage = 'My Account';
     expect(await newTab.locator(".text-uppercase.spree-mb-large.spree-mt-large.spree-header").textContent()).toContain(searchPage);
     expect(await newTab.locator(".account-page-user-info-item-definition").textContent()).toContain(email);
-    
+
     const currentURL = newTab.url();
     expect(currentURL).toBe("https://demo.spreecommerce.org/account");
 
