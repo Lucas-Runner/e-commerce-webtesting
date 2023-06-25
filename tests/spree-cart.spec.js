@@ -17,7 +17,7 @@ await newTab.locator("#product_65").click();
 
 const productNameLocator = await newTab.locator('.mt-3.mt-md-0.text-center.text-md-left.product-details-title');
 const productName = await productNameLocator.innerText();
-console.log(productName);
+
 await newTab.locator("#add-to-cart-button").click();
 
 // View Cart
@@ -26,7 +26,10 @@ await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-upper
 
 const cartItemLocator = await newTab.locator('.item-title');
 const cartItemName = await cartItemLocator.innerText();
-console.log(cartItemName);
+
+// Product Names Assertions
+
+expect(productName).toBe(cartItemName);
 
 await page.waitForTimeout(5000);
 
