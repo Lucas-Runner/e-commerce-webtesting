@@ -16,6 +16,8 @@ await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
 await newTab.locator("#product_65").click();
 await newTab.locator("#add-to-cart-button").click();
 
+const clickedProductTitle = await newTab.locator(".product-component-name").textContent();
+console.log(clickedProductTitle);
 // View Cart
 
 await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
