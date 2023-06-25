@@ -14,10 +14,12 @@ await newTab.goto("https://demo.spreecommerce.org/");
 
 await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
 await newTab.locator("#product_65").click();
+
+const productNameLocator = await newTab.locator('.mt-3.mt-md-0.text-center.text-md-left.product-details-title');
+const productName = await productNameLocator.innerText();
+
 await newTab.locator("#add-to-cart-button").click();
 
-const clickedProductTitle = await newTab.locator(".product-component-name").textContent();
-console.log(clickedProductTitle);
 // View Cart
 
 await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
