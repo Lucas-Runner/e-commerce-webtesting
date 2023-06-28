@@ -28,7 +28,7 @@ test('Browser Context Test', async ({ browser }) => {
 
     const firstName = newTab.locator("[id='order_bill_address_attributes_firstname']");
     const lastName = newTab.locator("[id='order_bill_address_attributes_lastname']");
-    const adddress = newTab.locator("[id='order_bill_address_attributes_address1']");
+    const address = newTab.locator("[id='order_bill_address_attributes_address1']");
     const adressContd = newTab.locator("[id='order_bill_address_attributes_address2']");
     const city = newTab.locator("[id='order_bill_address_attributes_city']");
     const zipCode = newTab.locator("[id='order_bill_address_attributes_zipcode']");
@@ -36,21 +36,30 @@ test('Browser Context Test', async ({ browser }) => {
     const state = newTab.locator("[id='order_bill_address_attributes_state_id']");
     const save = newTab.locator('input[type="submit"]');
 
-    await firstName.type("Lucas");
-    await lastName.type("Silva");
-    await adddress.type("Billing Street 999");
-    await adressContd.type("apartment n° 1040");
-    await city.type("Columbus");
-    await zipCode.type("44039")
-    await phone.type("555-0123456")
-    await state.selectOption({ label: 'Ohio' });
+    const firstNameText = "Lucas";
+    const lastNameText = "Silva";
+    const addressText = "Billing Street 999"
+    const adressContdText = "apartment n° 1040"
+    const cityText = "Columbus"
+    const zipCodeText = "44039"
+    const phoneText = "555-0123456"
+    const stateText = "Ohio"
+
+    await firstName.type(firstNameText);
+    await lastName.type(lastNameText);
+    await address.type(addressText);
+    await adressContd.type(adressContdText);
+    await city.type(cityText);
+    await zipCode.type(zipCodeText)
+    await phone.type(phoneText)
+    await state.selectOption({ label: stateText });
     await save.click();
 
     // End of Billing Address Filling Procedure
 
     // Shippment and Payment Options
 
-    await save.click(); 
+    await save.click();
 
     const cardNumber = newTab.locator("[id='card_number']");
     const cardExpiry = newTab.locator("[id='card_expiry']");
@@ -60,15 +69,21 @@ test('Browser Context Test', async ({ browser }) => {
     await cardExpiry.type("122025");
     await cardCode.type("123");
 
-    await save.click(); 
+    await save.click();
 
     // Check-Out Assertions
 
-    
+    const orderDetailsText = await newTab.textContent("[id='order_details']");
+
+    expect(orderDetailsText).toContain(firstNameText);
+    expect(orderDetailsText).toContain(lastNameText);
+    expect(orderDetailsText).toContain(addressText);
+    expect(orderDetailsText).toContain(cityText);
+    expect(orderDetailsText).toContain(zipCodeText);
 
     // Purchase Confirmation and Assertions
 
-    await page.waitForTimeout(30000);
+    await page.waitForTimeout(5000);
 
 
 });
