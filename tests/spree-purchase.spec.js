@@ -26,18 +26,16 @@ test('Browser Context Test', async ({ browser }) => {
 
     // Billing Address filling procedure
 
-    const adressTitle = newTab.locator("[id='address_label']");
-    const firstName = newTab.locator("[id='address_firstname']");
-    const lastName = newTab.locator("[id='address_lastname']");
-    const adddress = newTab.locator("[id='address_address1']");
-    const adressContd = newTab.locator("[id='address_address2']");
-    const city = newTab.locator("[id='address_city']");
-    const zipCode = newTab.locator("[id='address_zipcode']");
-    const phone = newTab.locator("[id='address_phone']")
-    const state = newTab.locator("[id='address_state_id']");
+    const firstName = newTab.locator("[id='order_bill_address_attributes_firstname']");
+    const lastName = newTab.locator("[id='order_bill_address_attributes_lastname']");
+    const adddress = newTab.locator("[id='order_bill_address_attributes_address1']");
+    const adressContd = newTab.locator("[id='order_bill_address_attributes_address2']");
+    const city = newTab.locator("[id='order_bill_address_attributes_city']");
+    const zipCode = newTab.locator("[id='order_bill_address_attributes_zipcode']");
+    const phone = newTab.locator("[id='order_bill_address_attributes_phone']")
+    const state = newTab.locator("[id='order_bill_address_attributes_state_id']");
     const save = newTab.locator('input[type="submit"]');
 
-    await adressTitle.type("Home");
     await firstName.type("Lucas");
     await lastName.type("Silva");
     await adddress.type("Billing Street 999");
