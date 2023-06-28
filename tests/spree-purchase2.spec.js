@@ -1,68 +1,65 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { executeRegistration } = require('../helpers/registration');
+const { executeBillingAddress } = require('../helpers/adress');
+
 
 test('Browser Context Test', async ({ browser }) => {
-  const { email, newTab, numPassword, page } = await executeRegistration(browser);
+    const { newTab, page } = await executeRegistration(browser);
 
-  // Return to Home Page
-  await newTab.goto('https://demo.spreecommerce.org/');
+    // Return to Home Page
 
-  // Clicking Shop Now, First Product and Add to Cart
-  await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
-  await newTab.locator('#product_65').click();
-  await newTab.locator('#add-to-cart-button').click();
+    await newTab.goto("https://demo.spreecommerce.org/");
 
-  // View Cart
-  await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
+    // Clicking Shop Now, First Product and Add to Cart
 
-  // Performing Checkout and Purchase procedure
-  await newTab.locator("[id='checkout-link']").click();
+    await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
+    await newTab.locator("#product_65").click();
+    await newTab.locator("#add-to-cart-button").click();
 
-  // Billing Address filling procedure
-  const billingAddressFields = {
-    "[id='order_bill_address_attributes_firstname']": 'Lucas',
-    lastName: 'Silva',
-    address1: 'Billing Street 999',
-    address2: 'apartment n° 1040',
-    city: 'Columbus',
-    zipcode: '44039',
-    phone: '555-0123456',
-    state_id: 'Ohio',
-  };
+    // View Cart
 
-  for (const field in billingAddressFields) {
-    const locator = newTab.locator(field);
-    await locator.type(billingAddressFields[field]);
-  }
+    await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
 
-  await newTab.locator('input[type="submit"]').click();
+    // Performing Checkout and Purchase procedure
 
-  // End of Billing Address Filling Procedure
+    await newTab.locator("[id='checkout-link']").click();
 
-  // Shippment and Payment Options
-  await newTab.locator('input[type="submit"]').click();
+    // Billing Address filling procedure
 
-  const paymentFields = {
-    card_number: '0123012301230123',
-    card_expiry: '122025',
-    card_code: '123',
-  };
+    const { firstNameText, lastNameText, addressText, cityText, zipCodeText, phoneText, stateText } = await executeBillingAddress(newTab);
 
-  for (const field in paymentFields) {
-    const locator = newTab.locator(`[id='${field}']`);
-    await locator.type(paymentFields[field]);
-  }
+    // End of Billing Address Filling Procedure
 
-  await newTab.locator('input[type="submit"]').click();
+    // Shippment and Payment Options
 
-  // Check-Out Assertions
-  const orderDetailsText = await newTab.textContent("[id='order_details']");
+    const save = newTab.locator('input[type="submit"]');
 
-  for (const field in billingAddressFields) {
-    expect(orderDetailsText).toContain(billingAddressFields[field]);
-  }
+    await save.click();
 
-  // Purchase Confirmation and Assertions
-  await page.waitForTimeout(5000);
+    const cardNumber = newTab.locator("[id='card_number']");
+    const cardExpiry = newTab.locator("[id='card_expiry']");
+    const cardCode = newTab.locator("[id='card_code']");
+
+    await cardNumber.type("0123012301230123");
+    await cardExpiry.type("122025");
+    await cardCode.type("123");
+
+    await save.click();
+
+    // Check-Out Assertions
+
+    const orderDetailsText = await newTab.textContent("[id='order_details']");
+
+    expect(orderDetailsText).toContain(firstNameText);
+    expect(orderDetailsText).toContain(lastNameText);
+    expect(orderDetailsText).toContain(addressText);
+    expect(orderDetailsText).toContain(cityText);
+    expect(orderDetailsText).toContain(zipCodeText);
+
+    // Purchase Confirmation and Assertions
+
+    await page.waitForTimeout(5000);
+
+
 });

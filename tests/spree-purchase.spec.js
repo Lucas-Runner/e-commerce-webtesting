@@ -4,7 +4,7 @@ const { executeRegistration } = require('../helpers/registration');
 
 
 test('Browser Context Test', async ({ browser }) => {
-    const { email, newTab, numPassword, page } = await executeRegistration(browser);
+    const { newTab, page } = await executeRegistration(browser);
 
     // Return to Home Page
 
