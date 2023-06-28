@@ -19,6 +19,7 @@ test('Browser Context Test', async ({ browser }) => {
     const zipCode = newTab.locator("[id='address_zipcode']");
     const phone = newTab.locator("[id='address_phone']")
     const state = newTab.locator("[id='address_state_id']");
+    const save = newTab.locator('input[type="submit"]');
 
     await newTab.locator('a[data-method="get"][href="/addresses/new"]').click();
 
@@ -30,35 +31,32 @@ test('Browser Context Test', async ({ browser }) => {
     await city.type("Columbus");
     await zipCode.type("0123456")
     await phone.type("555-0123456")
-
-    // Click on the dropdown to expand the options
-
-    await state.click();
-    
+    await state.selectOption({ label: 'Ohio' });
+    await save.click();
 
     // end of address phase
 
-/*
-    // Clicking Logo to Return Home Page
-
-    await newTab.goto("https://demo.spreecommerce.org/");
-
-    // Clicking Shop Now, First Product and Add to Cart
-
-    await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
-    await newTab.locator("#product_65").click();
-    await newTab.locator("#add-to-cart-button").click();
-
-    // View Cart
-
-    await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
-
-    // Performing Checkout and Purchase procedure
-
-    await newTab.locator("[id='checkout-link']").click();
-
-    // Purchase Confirmation and Assertions
-*/
+    /*
+        // Clicking Logo to Return Home Page
+    
+        await newTab.goto("https://demo.spreecommerce.org/");
+    
+        // Clicking Shop Now, First Product and Add to Cart
+    
+        await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
+        await newTab.locator("#product_65").click();
+        await newTab.locator("#add-to-cart-button").click();
+    
+        // View Cart
+    
+        await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
+    
+        // Performing Checkout and Purchase procedure
+    
+        await newTab.locator("[id='checkout-link']").click();
+    
+        // Purchase Confirmation and Assertions
+    */
     await page.waitForTimeout(5000);
 
 
