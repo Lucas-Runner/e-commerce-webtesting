@@ -57,7 +57,7 @@ test('Browser Context Test', async ({ browser }) => {
     
         // Purchase Confirmation and Assertions
     */
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(60000);
 
 
 });
