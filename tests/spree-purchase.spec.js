@@ -6,9 +6,25 @@ const { executeRegistration } = require('../helpers/registration');
 test('Browser Context Test', async ({ browser }) => {
     const { email, newTab, numPassword, page } = await executeRegistration(browser);
 
-    // formating address phase
+    // Return to Home Page
 
-    // Adding Adress and billing info
+    await newTab.goto("https://demo.spreecommerce.org/");
+
+    // Clicking Shop Now, First Product and Add to Cart
+
+    await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
+    await newTab.locator("#product_65").click();
+    await newTab.locator("#add-to-cart-button").click();
+
+    // View Cart
+
+    await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
+
+    // Performing Checkout and Purchase procedure
+
+    await newTab.locator("[id='checkout-link']").click();
+
+    // Billing Address filling procedure
 
     const adressTitle = newTab.locator("[id='address_label']");
     const firstName = newTab.locator("[id='address_firstname']");
@@ -21,8 +37,6 @@ test('Browser Context Test', async ({ browser }) => {
     const state = newTab.locator("[id='address_state_id']");
     const save = newTab.locator('input[type="submit"]');
 
-    await newTab.locator('a[data-method="get"][href="/addresses/new"]').click();
-
     await adressTitle.type("Home");
     await firstName.type("Lucas");
     await lastName.type("Silva");
@@ -34,29 +48,10 @@ test('Browser Context Test', async ({ browser }) => {
     await state.selectOption({ label: 'Ohio' });
     await save.click();
 
-    // end of address phase
+    // End of Billing Address Filling Procedure
 
-    /*
-        // Clicking Logo to Return Home Page
-    
-        await newTab.goto("https://demo.spreecommerce.org/");
-    
-        // Clicking Shop Now, First Product and Add to Cart
-    
-        await newTab.locator('.btn.btn-primary.spree-btn.px-5').click();
-        await newTab.locator("#product_65").click();
-        await newTab.locator("#add-to-cart-button").click();
-    
-        // View Cart
-    
-        await newTab.locator('.btn.btn-outline-primary.w-100.font-weight-bold.text-uppercase.product-added-modal-button').click();
-    
-        // Performing Checkout and Purchase procedure
-    
-        await newTab.locator("[id='checkout-link']").click();
-    
-        // Purchase Confirmation and Assertions
-    */
+    // Purchase Confirmation and Assertions
+
     await page.waitForTimeout(60000);
 
 
