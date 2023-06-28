@@ -41,16 +41,34 @@ test('Browser Context Test', async ({ browser }) => {
     await adddress.type("Billing Street 999");
     await adressContd.type("apartment n° 1040");
     await city.type("Columbus");
-    await zipCode.type("0123456")
+    await zipCode.type("44039")
     await phone.type("555-0123456")
     await state.selectOption({ label: 'Ohio' });
     await save.click();
 
     // End of Billing Address Filling Procedure
 
+    // Shippment and Payment Options
+
+    await save.click(); 
+
+    const cardNumber = newTab.locator("[id='card_number']");
+    const cardExpiry = newTab.locator("[id='card_expiry']");
+    const cardCode = newTab.locator("[id='card_code']");
+
+    await cardNumber.type("0123012301230123");
+    await cardExpiry.type("122025");
+    await cardCode.type("123");
+
+    await save.click(); 
+
+    // Check-Out Assertions
+
+    
+
     // Purchase Confirmation and Assertions
 
-    await page.waitForTimeout(60000);
+    await page.waitForTimeout(30000);
 
 
 });
