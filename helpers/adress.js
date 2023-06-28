@@ -27,7 +27,7 @@ async function executeBillingAddress(browser) {
     await save.click();
 
 
-    return { email, newTab, numPassword, page };
+    return { email, newTab, numPassword };
 }
 
 module.exports = { executeBillingAddress };
