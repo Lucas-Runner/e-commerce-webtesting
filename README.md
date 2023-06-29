@@ -4,12 +4,12 @@
 
 # Test Scenario 1: E-commerce Website Registration
 
-This test scenario verifies the functionality of the registration page.
+This test verifies the functionality of the registration page.
 
 ## Test Steps
 
 1. Set up the test environment by importing the necessary modules and helper functions.
-2. Execute the registration process using the `executeRegistration` helper function.
+2. Execute the registration process using the `executeRegistration` helper function. (Function described in Helpers section)
 3. Perform assertions to check the following:
    - The page contains the expected search page text "My Account".
    - The page displays the registered email in the user information section.
