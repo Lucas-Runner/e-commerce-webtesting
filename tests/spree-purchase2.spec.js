@@ -9,7 +9,13 @@ test('Browser Context Test', async ({ browser }) => {
 
     // Return to Home Page
 
-    await newTab.goto("https://demo.spreecommerce.org/");
+
+    //await newTab.goto("https://demo.spreecommerce.org/"); 
+
+    //await newTab.locator('#header').getByRole('link', { name: 'Spree Demo Site' }).click();
+
+    await newTab.locator("#header img[alt='Spree Demo Site']").click();
+
 
     // Clicking Shop Now, First Product and Add to Cart
 
