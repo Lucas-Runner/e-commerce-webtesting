@@ -17,8 +17,8 @@ const config = {
   use: {
 
     browserName: 'chromium',
-  
-    headless: false
+    
+    headless: process.env.CI ? true : false,
   
   },
 
