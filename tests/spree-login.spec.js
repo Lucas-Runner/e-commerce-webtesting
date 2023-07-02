@@ -7,7 +7,7 @@ test('Browser Context Test', async ({ browser }) => {
 
     // Log-out Procedure / Log-in Test
 
-    await newTab.locator("#account-button").click();
+    await newTab.locator("//button[@id='account-button']//*[name()='svg']").click();
     await newTab.locator('#link-to-account a[href="/logout"]').click();
     await newTab.goto("https://demo.spreecommerce.org/");
     await newTab.locator("#account-button").click();
