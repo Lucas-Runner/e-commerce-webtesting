@@ -144,3 +144,5 @@ This test scenario verifies the functionality of the full purchase procedure on 
 4. Perform assertions to check the following:
    - The order details page contains the first name, last name, address, city, and zip code information.
 5. Wait for a 5-second timeout to allow the page to load.
+
+NOTE: The purchase procedure test under the file name "spree-purchase.spec.js" contains two versions, whereas the "spree-purchase2.spec.js" contains the login procedure exported under the helper JS file name of "registration.js" and executed under the function call "executeBillingAddres". The two versions are kept for visualization purposes only.
